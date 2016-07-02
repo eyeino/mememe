@@ -26,7 +26,7 @@
                                             <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="clD-my-OY3"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="j51-bE-29E"/>
+                                    <barButtonItem width="93" style="plain" systemItem="fixedSpace" id="j51-bE-29E"/>
                                     <barButtonItem title="Camera" id="jWO-8S-ClC">
                                         <connections>
                                             <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="ZVJ-oq-4Q3"/>
@@ -35,7 +35,7 @@
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TNF-cl-9Cg">
-                                <rect key="frame" x="20" y="40" width="560" height="496"/>
+                                <rect key="frame" x="20" y="50" width="560" height="486"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vR4-9c-qcL">
                                 <rect key="frame" x="288" y="61" width="25" height="30"/>
@@ -47,19 +47,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M9h-Po-lEr">
+                                <rect key="frame" x="30" y="20" width="40" height="30"/>
+                                <state key="normal" title="Share"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vR4-9c-qcL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4Wi-n5-s8T"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="azL-NM-1Nu" secondAttribute="bottom" id="5e0-me-cRj"/>
                             <constraint firstItem="azL-NM-1Nu" firstAttribute="top" secondItem="TNF-cl-9Cg" secondAttribute="bottom" constant="20" id="6rp-xh-qDp"/>
+                            <constraint firstItem="M9h-Po-lEr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="BDk-wQ-8TD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TNF-cl-9Cg" secondAttribute="trailing" id="DFI-cq-f4d"/>
                             <constraint firstItem="vR4-9c-qcL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="41" id="Inn-oF-8j0"/>
                             <constraint firstItem="azL-NM-1Nu" firstAttribute="top" secondItem="RsQ-Wa-Xd9" secondAttribute="bottom" constant="50" id="J6q-bO-eDi"/>
                             <constraint firstItem="azL-NM-1Nu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="MLY-EF-WhU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="azL-NM-1Nu" secondAttribute="trailing" constant="-20" id="Mdz-9R-ecZ"/>
                             <constraint firstItem="TNF-cl-9Cg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="NFd-6u-8dV"/>
-                            <constraint firstItem="TNF-cl-9Cg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="NlE-cs-cp7"/>
+                            <constraint firstItem="TNF-cl-9Cg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="NlE-cs-cp7"/>
+                            <constraint firstItem="M9h-Po-lEr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="mDH-jD-Env"/>
                             <constraint firstItem="RsQ-Wa-Xd9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sDW-Nv-R6I"/>
                         </constraints>
                     </view>
@@ -67,6 +73,7 @@
                         <outlet property="bottomText" destination="RsQ-Wa-Xd9" id="hve-f2-7X3"/>
                         <outlet property="cameraButton" destination="jWO-8S-ClC" id="VUy-FH-bnl"/>
                         <outlet property="imageView" destination="TNF-cl-9Cg" id="Vsp-2o-HXY"/>
+                        <outlet property="shareButton" destination="M9h-Po-lEr" id="S6r-5E-2JH"/>
                         <outlet property="topText" destination="vR4-9c-qcL" id="fHq-Eq-aSV"/>
                     </connections>
                 </viewController>

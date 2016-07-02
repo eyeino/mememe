@@ -16,6 +16,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
+    @IBOutlet weak var shareButton: UIButton!
+    
     
     //MARK: View Functions
 
@@ -30,6 +32,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         //Disable camera button if camera is not available on device
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        
+        //Disable share button by default
+        shareButton.hidden = true
         
         let memeTextAttributes = [
             NSStrokeColorAttributeName: UIColor.blackColor(),
@@ -47,6 +52,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeFromKeyboardNotifications()
     }
 
+    //MARK: Meme Saving
+    
+    struct Meme {
+        let top: String
+        let bottom: String
+        let originalImage: UIImage
+        let memedImage: UIImage
+    }
+    
+    func save() {
+        let memedImage = generateMemedImage()
+        
+        //Initialize Meme object
+        let meme = Meme(top: topText.text!, bottom: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
+        
+        meme.memedImage
+    }
+    
+    func generateMemedImage() -> UIImage {
+        
+        // TODO: Hide toolbar and navbar
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        // TODO:  Show toolbar and navbar       
+        
+        return memedImage
+    }
+    
     //MARK: Toolbar Buttons
     
     @IBAction func pickAnImageFromAlbum(sender: AnyObject) {
@@ -79,6 +117,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //Reset text fields after choosing new image
         topText.text = "TOP"
         bottomText.text = "BOTTOM"
+        
+        //Enable share button since image was picked
+        shareButton.hidden = false
         
         dismissViewControllerAnimated(true, completion: nil)
     }
