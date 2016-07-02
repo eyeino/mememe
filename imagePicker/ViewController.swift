@@ -11,15 +11,28 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+    }
 
-    @IBAction func pickAnImage(sender: AnyObject) {
+    @IBAction func pickAnImageFromAlbum(sender: AnyObject) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func pickAnImageFromCamera(sender: AnyObject) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(imagePicker, animated: true, completion: nil)
     }
 
@@ -35,7 +48,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             imageView.autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin]
             imageView.contentMode = UIViewContentMode.ScaleAspectFit
         }
-        
         dismissViewControllerAnimated(true, completion: nil)
     }
     

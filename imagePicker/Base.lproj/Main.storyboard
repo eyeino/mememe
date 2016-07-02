@@ -18,19 +18,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TNF-cl-9Cg">
+                                <rect key="frame" x="20" y="40" width="560" height="496"/>
+                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azL-NM-1Nu">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Choose Photo..." id="xjh-Hb-ir5">
+                                    <barButtonItem title="Photo Library" id="xjh-Hb-ir5">
                                         <connections>
-                                            <action selector="pickAnImage:" destination="BYZ-38-t0r" id="7hb-vZ-sbb"/>
+                                            <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="clD-my-OY3"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="j51-bE-29E"/>
+                                    <barButtonItem title="Camera" id="jWO-8S-ClC">
+                                        <connections>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="ZVJ-oq-4Q3"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TNF-cl-9Cg">
-                                <rect key="frame" x="20" y="40" width="560" height="496"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -44,6 +50,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cameraButton" destination="jWO-8S-ClC" id="VUy-FH-bnl"/>
                         <outlet property="imageView" destination="TNF-cl-9Cg" id="Vsp-2o-HXY"/>
                     </connections>
                 </viewController>
