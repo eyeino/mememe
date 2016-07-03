@@ -17,6 +17,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var topBar: UIToolbar!
+    @IBOutlet weak var bottomBar: UIToolbar!
     
     
     //MARK: View Functions
@@ -38,6 +40,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomText.textAlignment = NSTextAlignment.Center
         topText.backgroundColor = UIColor.clearColor()
         bottomText.backgroundColor = UIColor.clearColor()
+        topText.borderStyle = .None
+        bottomText.borderStyle = .None
         
         topText.text = "TOP"
         bottomText.text = "BOTTOM"
@@ -87,7 +91,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func generateMemedImage() -> UIImage {
         
-        // TODO: Hide toolbar and navbar
+        topBar.hidden = true
+        bottomBar.hidden = true
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -95,7 +100,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        // TODO:  Show toolbar and navbar       
+        topBar.hidden = false
+        bottomBar.hidden = false
         
         return memedImage
     }

@@ -98,10 +98,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomBar" destination="azL-NM-1Nu" id="K83-4N-bgk"/>
                         <outlet property="bottomText" destination="RsQ-Wa-Xd9" id="hve-f2-7X3"/>
                         <outlet property="cameraButton" destination="jWO-8S-ClC" id="VUy-FH-bnl"/>
                         <outlet property="imageView" destination="TNF-cl-9Cg" id="Vsp-2o-HXY"/>
                         <outlet property="shareButton" destination="IFR-PM-y4q" id="q0b-YB-mAg"/>
+                        <outlet property="topBar" destination="ZEn-rb-rKy" id="QRz-MD-zf8"/>
                         <outlet property="topText" destination="vR4-9c-qcL" id="fHq-Eq-aSV"/>
                     </connections>
                 </viewController>
