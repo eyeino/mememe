@@ -46,8 +46,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         topText.text = "TOP"
         bottomText.text = "BOTTOM"
-        topText.tag = 0
-        bottomText.tag = 1
+        topText.tag = 0 //referenced by textFieldTags.top enum
+        bottomText.tag = 1 //referenced by textFieldTags.bottom enum
         
         //Hides keyboard when user taps anywhere outside of a TextField.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
@@ -106,6 +106,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        imagePicker.allowsEditing = true
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
@@ -113,13 +114,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+        imagePicker.allowsEditing = true
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     //Initializes Meme object and sends .memedImage to the ActivityViewController
     @IBAction func shareMeme() {
         let meme = Meme(top: topText.text!, bottom: bottomText.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
-        
         let nextController = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
         self.presentViewController(nextController, animated: true, completion: nil)
     }
@@ -131,7 +132,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             imageView.image = image
             imageView.autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin]
             imageView.contentMode = UIViewContentMode.ScaleAspectFit
@@ -189,6 +190,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return true
     }
     
+    //Clears textfields when editing begins
     func textFieldDidBeginEditing(textField: UITextField) {
         let text = textField.text
         if text == "TOP" || text == "BOTTOM" {
@@ -201,6 +203,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         case bottom = 1
     }
     
+    //If textfield is empty when editing ends, insert "TOP" or "BOTTOM"
     func textFieldDidEndEditing(textField: UITextField) {
         let text = textField.text!
         let tag = textField.tag
