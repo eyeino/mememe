@@ -154,13 +154,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        let keyboardHeight = getKeyboardHeight(notification)
-        //if bottomText.frame.maxY - view.frame.origin.y < keyboardHeight {
-        view.frame.origin.y -= keyboardHeight
+        //View will only shift up if bottom textfield is being edited
+        if bottomText.editing {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+                if view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+        }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        view.frame.origin.y = 0
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
