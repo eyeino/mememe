@@ -138,7 +138,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
         shareButton.enabled = true
-        
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -174,7 +173,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         view.endEditing(true)
     }
     
-    //MARK: Delegate Function
+    //MARK: UITextFieldDelegate Functions
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
