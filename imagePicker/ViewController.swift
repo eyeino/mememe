@@ -25,11 +25,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        //Set tons of text attributes and TextField attributes
         let memeTextAttributes = [
             NSStrokeColorAttributeName: UIColor.blackColor(),
             NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
             NSStrokeWidthAttributeName: -5.0
         ]
         
@@ -45,8 +46,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         topText.text = "TOP"
         bottomText.text = "BOTTOM"
+        topText.tag = 0
+        bottomText.tag = 1
         
-        //Hides keyboard when user taps outside of a TextField.
+        //Hides keyboard when user taps anywhere outside of a TextField.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
@@ -71,22 +74,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeFromKeyboardNotifications()
     }
     
-    //MARK: Meme Saving
+    //MARK: Meme Making
     
     struct Meme {
         let top: String
         let bottom: String
         let originalImage: UIImage
         let memedImage: UIImage
-    }
-    
-    func saveMeme() {
-        let memedImage = generateMemedImage()
-        
-        //Initialize Meme object
-        let meme = Meme(top: topText.text!, bottom: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
-        
-        meme.memedImage
     }
     
     func generateMemedImage() -> UIImage {
@@ -122,9 +116,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
+    //Initializes Meme object and sends .memedImage to the ActivityViewController
     @IBAction func shareMeme() {
-        let meme = generateMemedImage()
-        let nextController = UIActivityViewController(activityItems: [meme], applicationActivities: nil)
+        let meme = Meme(top: topText.text!, bottom: bottomText.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+        
+        let nextController = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
         self.presentViewController(nextController, animated: true, completion: nil)
     }
 
@@ -179,9 +175,35 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     //MARK: Delegate Function
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        let text = textField.text
+        if text == "TOP" || text == "BOTTOM" {
+            textField.text = ""
+        }
+    }
+    
+    enum textFieldTags: Int {
+        case top = 0
+        case bottom = 1
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        let text = textField.text!
+        let tag = textField.tag
+        switch (text, tag) {
+        case ("", textFieldTags.top.rawValue):
+            textField.text = "TOP"
+        case ("", textFieldTags.bottom.rawValue):
+            textField.text = "BOTTOM"
+        default:
+            break
+        }
     }
     
 }

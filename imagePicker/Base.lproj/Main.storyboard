@@ -34,7 +34,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZEn-rb-rKy">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEn-rb-rKy">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
                                     <barButtonItem title="Share" id="IFR-PM-y4q">
@@ -44,13 +44,13 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRb-aX-e4s">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HRb-aX-e4s">
                                 <rect key="frame" x="20" y="64" width="560" height="472"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TNF-cl-9Cg">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TNF-cl-9Cg">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="472"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RsQ-Wa-Xd9">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RsQ-Wa-Xd9">
                                         <rect key="frame" x="20" y="402" width="521" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="bxr-6l-1PX"/>
@@ -84,7 +84,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZEn-rb-rKy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="5Mv-Ia-fDP"/>
+                            <constraint firstItem="ZEn-rb-rKy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="10" id="17a-vw-HmG"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="azL-NM-1Nu" secondAttribute="bottom" id="5e0-me-cRj"/>
                             <constraint firstItem="ZEn-rb-rKy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="9gM-4Q-dvS"/>
                             <constraint firstItem="HRb-aX-e4s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="EKV-Ee-SE7"/>
@@ -93,7 +93,6 @@
                             <constraint firstItem="HRb-aX-e4s" firstAttribute="top" secondItem="ZEn-rb-rKy" secondAttribute="bottom" constant="20" id="R3J-tb-WuC"/>
                             <constraint firstItem="azL-NM-1Nu" firstAttribute="top" secondItem="HRb-aX-e4s" secondAttribute="bottom" constant="20" id="WQH-FD-O5N"/>
                             <constraint firstItem="ZEn-rb-rKy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="g0t-zf-MAD"/>
-                            <constraint firstItem="ZEn-rb-rKy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="xgu-Qb-CbZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HRb-aX-e4s" secondAttribute="trailing" id="zXx-AB-Me8"/>
                         </constraints>
                     </view>
