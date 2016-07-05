@@ -26,23 +26,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        //Set tons of text attributes and TextField attributes
-        let memeTextAttributes = [
-            NSStrokeColorAttributeName: UIColor.blackColor(),
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
-            NSStrokeWidthAttributeName: -5.0
-        ]
-        
-        topText.defaultTextAttributes = memeTextAttributes
-        bottomText.defaultTextAttributes = memeTextAttributes
-        
-        topText.textAlignment = NSTextAlignment.Center
-        bottomText.textAlignment = NSTextAlignment.Center
-        topText.backgroundColor = UIColor.clearColor()
-        bottomText.backgroundColor = UIColor.clearColor()
-        topText.borderStyle = .None
-        bottomText.borderStyle = .None
+        setMemeTextFieldProperties(topText)
+        setMemeTextFieldProperties(bottomText)
         
         topText.text = "TOP"
         bottomText.text = "BOTTOM"
@@ -98,6 +83,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomBar.hidden = false
         
         return memedImage
+    }
+    
+    func setMemeTextFieldProperties(textField: UITextField) {
+        let memeTextAttributes = [
+            NSStrokeColorAttributeName: UIColor.blackColor(),
+            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
+            NSStrokeWidthAttributeName: -5.0
+        ]
+        
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = NSTextAlignment.Center
+        textField.backgroundColor = UIColor.clearColor()
+        textField.borderStyle = .None
     }
     
     //MARK: Buttons
