@@ -101,20 +101,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //MARK: Buttons
     
-    @IBAction func pickAnImageFromAlbum(sender: AnyObject) {
+    func pickAnImage(source: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        imagePicker.sourceType = source
         imagePicker.allowsEditing = true
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func pickAnImageFromAlbum(sender: AnyObject) {
+        pickAnImage(.PhotoLibrary)
+    }
+    
     @IBAction func pickAnImageFromCamera(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        imagePicker.allowsEditing = true
-        presentViewController(imagePicker, animated: true, completion: nil)
+        pickAnImage(.Camera)
     }
     
     //Initializes Meme object and sends .memedImage to the ActivityViewController
