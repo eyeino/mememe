@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C84DB261D2C0867006D0C01 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84DB251D2C0867006D0C01 /* Meme.swift */; };
 		3CB2C1FD1D271F9A008A3433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB2C1FC1D271F9A008A3433 /* AppDelegate.swift */; };
 		3CB2C1FF1D271F9A008A3433 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB2C1FE1D271F9A008A3433 /* ViewController.swift */; };
 		3CB2C2021D271F9A008A3433 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CB2C2001D271F9A008A3433 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C84DB251D2C0867006D0C01 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		3CB2C1F91D271F9A008A3433 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CB2C1FC1D271F9A008A3433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CB2C1FE1D271F9A008A3433 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				3CB2C22A1D28B439008A3433 /* Impact.ttf */,
 				3CB2C1FC1D271F9A008A3433 /* AppDelegate.swift */,
 				3CB2C1FE1D271F9A008A3433 /* ViewController.swift */,
+				3C84DB251D2C0867006D0C01 /* Meme.swift */,
 				3CB2C2001D271F9A008A3433 /* Main.storyboard */,
 				3CB2C2031D271F9A008A3433 /* Assets.xcassets */,
 				3CB2C2051D271F9A008A3433 /* LaunchScreen.storyboard */,
@@ -266,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C84DB261D2C0867006D0C01 /* Meme.swift in Sources */,
 				3CB2C1FF1D271F9A008A3433 /* ViewController.swift in Sources */,
 				3CB2C1FD1D271F9A008A3433 /* AppDelegate.swift in Sources */,
 			);
@@ -496,6 +500,7 @@
 				3CB2C2231D271F9B008A3433 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CB2C2241D271F9B008A3433 /* Build configuration list for PBXNativeTarget "MemeMeTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +509,7 @@
 				3CB2C2261D271F9B008A3433 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CB2C2271D271F9B008A3433 /* Build configuration list for PBXNativeTarget "MemeMeUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +518,7 @@
 				3CB2C2291D271F9B008A3433 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

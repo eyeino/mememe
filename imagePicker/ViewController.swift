@@ -31,8 +31,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         topText.text = "TOP"
         bottomText.text = "BOTTOM"
-        topText.tag = 0 //referenced by textFieldTags.top enum
-        bottomText.tag = 1 //referenced by textFieldTags.bottom enum
+        topText.tag = TextFieldTags.top.rawValue
+        bottomText.tag = TextFieldTags.bottom.rawValue
         
         //Hides keyboard when user taps anywhere outside of a TextField.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
@@ -60,13 +60,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     //MARK: Meme Making
-    
-    struct Meme {
-        let top: String
-        let bottom: String
-        let originalImage: UIImage
-        let memedImage: UIImage
-    }
     
     func generateMemedImage() -> UIImage {
         
@@ -207,7 +200,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    enum textFieldTags: Int {
+    enum TextFieldTags: Int {
         case top = 0
         case bottom = 1
     }
@@ -217,9 +210,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let text = textField.text!
         let tag = textField.tag
         switch (text, tag) {
-        case ("", textFieldTags.top.rawValue):
+        case ("", TextFieldTags.top.rawValue):
             textField.text = "TOP"
-        case ("", textFieldTags.bottom.rawValue):
+        case ("", TextFieldTags.bottom.rawValue):
             textField.text = "BOTTOM"
         default:
             break
