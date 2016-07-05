@@ -63,8 +63,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func generateMemedImage() -> UIImage {
         
-        topBar.hidden = true
-        bottomBar.hidden = true
+        hideToolBars(true)
         
         // Render view to an image
         UIGraphicsBeginImageContext(view.frame.size)
@@ -72,10 +71,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        topBar.hidden = false
-        bottomBar.hidden = false
+        hideToolBars(false)
         
         return memedImage
+    }
+    
+    func hideToolBars(hidden: Bool) {
+        topBar.hidden = hidden
+        bottomBar.hidden = hidden
     }
     
     func setMemeTextFieldProperties(textField: UITextField) {
@@ -126,7 +129,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = image
             imageView.autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin]
             imageView.contentMode = UIViewContentMode.ScaleAspectFit
@@ -140,7 +143,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = source
-        imagePicker.allowsEditing = true
+        imagePicker.allowsEditing = false
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
@@ -157,22 +160,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        //View will only shift up if bottom textfield is being edited
-        if bottomText.editing {
-            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-                if view.frame.origin.y == 0 {
-                    view.frame.origin.y -= keyboardSize.height
-                }
-            }
+        if bottomText.isFirstResponder(){
+            view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            if view.frame.origin.y != 0 {
-                view.frame.origin.y += keyboardSize.height
-            }
-        }
+        view.frame.origin.y = 0
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
