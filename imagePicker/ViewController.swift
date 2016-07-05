@@ -90,7 +90,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             NSStrokeColorAttributeName: UIColor.blackColor(),
             NSForegroundColorAttributeName: UIColor.whiteColor(),
             NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
-            NSStrokeWidthAttributeName: -5.0
+            NSStrokeWidthAttributeName: -3.6
         ]
         
         textField.defaultTextAttributes = memeTextAttributes
