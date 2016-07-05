@@ -39,8 +39,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         view.addGestureRecognizer(tap)
         
         //Delegate hides keyboard upon pressing return
-        self.topText.delegate = self
-        self.bottomText.delegate = self
+        topText.delegate = self
+        bottomText.delegate = self
         
         shareButton.enabled = false
     }
@@ -74,8 +74,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomBar.hidden = true
         
         // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -101,14 +101,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //MARK: Buttons
     
-    func pickAnImage(source: UIImagePickerControllerSourceType) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = source
-        imagePicker.allowsEditing = true
-        presentViewController(imagePicker, animated: true, completion: nil)
-    }
-    
     @IBAction func pickAnImageFromAlbum(sender: AnyObject) {
         pickAnImage(.PhotoLibrary)
     }
@@ -117,11 +109,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         pickAnImage(.Camera)
     }
     
-    //Initializes Meme object and sends .memedImage to the ActivityViewController
     @IBAction func shareMeme() {
-        let meme = Meme(top: topText.text!, bottom: bottomText.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
-        let nextController = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
-        self.presentViewController(nextController, animated: true, completion: nil)
+        let memedImage = generateMemedImage()
+        let nextController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        nextController.completionWithItemsHandler = {
+            (activityType, completed, returnedItems, activityError) in
+            if completed {
+                self.saveMeme(memedImage)
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+        presentViewController(nextController, animated: true, completion: nil)
+    }
+    
+    func saveMeme(memedImage: UIImage) {
+        let meme = Meme(top: topText.text!, bottom: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
     }
 
     //MARK: Image Picking
@@ -141,6 +143,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func pickAnImage(source: UIImagePickerControllerSourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = source
+        imagePicker.allowsEditing = true
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
     //MARK: Keyboard Functions
     
     func subscribeToKeyboardNotifications() {
@@ -158,7 +168,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if bottomText.editing {
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
                 if view.frame.origin.y == 0 {
-                    self.view.frame.origin.y -= keyboardSize.height
+                    view.frame.origin.y -= keyboardSize.height
                 }
             }
         }
@@ -167,7 +177,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             if view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height
+                view.frame.origin.y += keyboardSize.height
             }
         }
     }
