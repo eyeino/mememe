@@ -17,9 +17,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
-    @IBOutlet weak var topBar: UIToolbar!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var topBar: UINavigationBar!
     @IBOutlet weak var bottomBar: UIToolbar!
     
+    var meme: Meme!
     
     //MARK: View Functions
 
@@ -119,9 +121,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func saveMeme(memedImage: UIImage) {
-        let meme = Meme(top: topText.text!, bottom: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
+        self.meme = Meme(top: topText.text!, bottom: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
     }
-
+    
+    @IBAction func dismissController() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     //MARK: Image Picking
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
