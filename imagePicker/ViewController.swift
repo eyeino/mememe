@@ -21,7 +21,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topBar: UINavigationBar!
     @IBOutlet weak var bottomBar: UIToolbar!
     
-    var meme: Meme!
+    var memes: [Meme] {
+        
+        get {
+            return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+        }
+        
+        set {
+            (UIApplication.sharedApplication().delegate as! AppDelegate).memes = newValue
+        }
+    }
     
     //MARK: View Functions
 
@@ -121,7 +130,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func saveMeme(memedImage: UIImage) {
-        self.meme = Meme(top: topText.text!, bottom: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
+        let meme = Meme(top: topText.text!, bottom: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
+        memes.append(meme)
+        print("saveMeme called. there are now \(memes.count) memes stored in the AppDelegate")
     }
     
     @IBAction func dismissController() {
