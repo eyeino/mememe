@@ -20,7 +20,6 @@ class MemeTableViewController: UITableViewController {
     //TODO: Reload tableView when new meme is added to the memes array.
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("Table view will appear...")
         self.tableView.reloadData()
     }
     
@@ -37,7 +36,9 @@ class MemeTableViewController: UITableViewController {
         
         // Set the name and image
         cell.textLabel?.text = "\(meme.top), \(meme.bottom)"
+        cell.detailTextLabel?.text = ""
         cell.imageView?.image = meme.memedImage
+        cell.imageView?.contentMode = .ScaleAspectFit
         
         return cell
     }

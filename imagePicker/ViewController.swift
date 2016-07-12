@@ -21,12 +21,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topBar: UINavigationBar!
     @IBOutlet weak var bottomBar: UIToolbar!
     
+    //set local memes array to access AppDelegate memes array
     var memes: [Meme] {
-        
         get {
             return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
         }
-        
         set {
             (UIApplication.sharedApplication().delegate as! AppDelegate).memes = newValue
         }

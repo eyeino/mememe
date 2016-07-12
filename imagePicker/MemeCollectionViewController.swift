@@ -23,7 +23,6 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("Collection view will appear...")
         self.collectionView!.reloadData()
     }
     
@@ -35,6 +34,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reusableIdentifier, forIndexPath: indexPath)
         let meme = memes[indexPath.row]
         cell.backgroundView = UIImageView(image: meme.memedImage)
+        cell.backgroundView?.contentMode = .ScaleAspectFit
         return cell
     }
     
