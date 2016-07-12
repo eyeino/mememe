@@ -22,7 +22,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
     let reusableIdentifier = "MemeCollectionCell"
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         print("Collection view will appear...")
         self.collectionView!.reloadData()
     }

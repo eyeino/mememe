@@ -18,13 +18,11 @@ class MemeTableViewController: UITableViewController {
     }
     
     //TODO: Reload tableView when new meme is added to the memes array.
-    /*
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("Table view loaded...")
-        self.tableView!.reloadData()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        print("Table view will appear...")
+        self.tableView.reloadData()
     }
-    */
     
     let reuseIdentifier = "MemeTableCell"
     
