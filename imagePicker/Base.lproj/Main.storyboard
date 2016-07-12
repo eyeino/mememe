@@ -9,7 +9,7 @@
         <!--MemeTableViewController-->
         <scene sceneID="13q-TN-GD1">
             <objects>
-                <tableViewController storyboardIdentifier="MemeTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xe3-AZ-tAG" userLabel="MemeTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MemeTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xe3-AZ-tAG" userLabel="MemeTableViewController" customClass="MemeTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6rh-XF-T54">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -319,6 +319,6 @@
         <image name="tableIcon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YqD-el-Mle"/>
+        <segue reference="KVV-y6-POF"/>
     </inferredMetricsTieBreakers>
 </document>
